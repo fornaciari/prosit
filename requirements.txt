@@ -9,6 +9,6 @@ scipy
 torch
 gensim
 contextualized_topic_models
-matplotlib.pyplot
+matplotlib
 seaborn
 imageio

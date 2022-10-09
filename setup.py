@@ -15,7 +15,7 @@ with open('requirements.txt') as f:
 
 setup(
     name="prosit",
-    version="0.0.2",
+    version="0.0.3",
     author="Tommaso Fornaciari",
     author_email="tommaso.fornaciari@poliziadistato.it",
     description="A topic models algorithm",

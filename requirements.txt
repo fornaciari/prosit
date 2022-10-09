@@ -9,7 +9,7 @@ collections
 scipy
 torch
 gensim
-contextualized_topic_models.evaluation.measures
+contextualized_topic_models
 CoherenceWordEmbeddings
 matplotlib.pyplot
 seaborn

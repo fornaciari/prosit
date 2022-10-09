@@ -2,10 +2,10 @@ AUTHORS.rst
 LICENSE
 README.rst
 setup.py
-prosit/__init__.py
-prosit/prosit.py
 prosit.egg-info/PKG-INFO
 prosit.egg-info/SOURCES.txt
 prosit.egg-info/dependency_links.txt
 prosit.egg-info/requires.txt
 prosit.egg-info/top_level.txt
+src/__init__.py
+src/prosit.py

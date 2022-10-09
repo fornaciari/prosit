@@ -12,5 +12,4 @@ contextualized_topic_models
 matplotlib.pyplot
 seaborn
 imageio
-random
 warnings

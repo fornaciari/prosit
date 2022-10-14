@@ -1,0 +1,500 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Guide &mdash; boostsa 0.0.18 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="Welcome to boostsa’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> boostsa
+          
+
+          
+            
+            <img src="_static/milanlp90.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#intro">Intro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#inputs">Inputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#outputs">Outputs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#test-function">Test function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#boostsa-in-a-pipeline">boostsa in a pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resuming-outcomes">Resuming outcomes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#technical-and-ethic-considerations">Technical and ethic considerations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">boostsa</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/guide.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="guide">
+<h1>Guide<a class="headerlink" href="#guide" title="Permalink to this headline">¶</a></h1>
+<a class="reference external image-reference" href="https://lbesson.mit-license.org/"><img alt="License" src="https://img.shields.io/github/license/fornaciari/boostsa" /></a>
+<div class="section" id="intro">
+<h2>Intro<a class="headerlink" href="#intro" title="Permalink to this headline">¶</a></h2>
+<p>boostsa - BOOtSTrap SAmpinlg - is a tool to compute bootstrap sampling significance test,
+even in the pipeline of a complex experimental design.</p>
+<p>For the theoretical aspects of Bootstrap sampling, please refer to the paper:</p>
+<blockquote>
+<div><p>Søgaard, A., Johannsen, A., Plank, B., Hovy, D., &amp; Alonso, H. M. (2014, June).
+<em>What’s in a p-value in NLP?</em>.
+In Proceedings of the eighteenth conference on computational natural language learning (pp. 1-10).</p>
+</div></blockquote>
+<p>See also <a class="reference internal" href="#tethics"><span class="std std-ref">Technical and ethic considerations</span></a>.</p>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install -U boostsa
+</pre></div>
+</div>
+</div>
+<div class="section" id="getting-started">
+<h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>First, import <code class="docutils literal notranslate"><span class="pre">boostsa</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">boostsa</span> <span class="kn">import</span> <span class="n">Bootstrap</span>
+</pre></div>
+</div>
+<p>Then, create a boostrap instance. You will use it to store your experiments’ results and to compute the bootstrap sampling significance test:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">boot</span> <span class="o">=</span> <span class="n">Bootstrap</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="section" id="inputs">
+<h3>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h3>
+<p>The assumption is that you ran at least two classification task experiments, which you want compare.</p>
+<p>One is your <em>baseline</em>, or <em>control</em>, or <em>hypothesis 0</em> (<em>h0</em>).</p>
+<p>The other one is the <em>experimental condition</em> that hopefully beats the baseline, or <em>treatment</em>, or <em>hypothesis 1</em> (<em>h1</em>).</p>
+<p>You compare the <em>h0</em> and <em>h1</em> predictions against the same targets.</p>
+<p>Therefore, <em>h0 predictions</em>, <em>h1 predictions</em> and <em>targets</em> will be the your <code class="docutils literal notranslate"><span class="pre">Bootstrap</span></code> instance’s data inputs.</p>
+</div>
+<div class="section" id="outputs">
+<h3>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h3>
+<p>By defalut, boostsa produces two output files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">results.tsv</span></code>, that contains the experiments’ performance and the (possible) significance levels;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">outcomes.json</span></code>, that contains targets and predictions for all the experimental conditions.</p></li>
+</ul>
+<p>You can define the outputs when you create the instance, using the following parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">save_results</span></code>, type: <code class="docutils literal notranslate"><span class="pre">bool</span></code>, default: <code class="docutils literal notranslate"><span class="pre">True</span></code>. This determines if you want to save the results.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">save_outcomes</span></code>, type: <code class="docutils literal notranslate"><span class="pre">bool</span></code>, default: <code class="docutils literal notranslate"><span class="pre">True</span></code>. This determines if you want to save the experiments’ outcomes..</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dir_out</span></code>, type: <code class="docutils literal notranslate"><span class="pre">str</span></code>, default: <code class="docutils literal notranslate"><span class="pre">''</span></code>, that is your working directory. This indicates the directory where to save the results.</p></li>
+</ul>
+<p>For example, if you want to save only the results in a particular folder, you will create an instance like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">boot</span> <span class="o">=</span> <span class="n">Bootstrap</span><span class="p">(</span><span class="n">save_outcomes</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dir_out</span><span class="o">=</span><span class="s1">&#39;my/favourite/directory/&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="test-function">
+<h2>Test function<a class="headerlink" href="#test-function" title="Permalink to this headline">¶</a></h2>
+<p>In the simplest conditions, you will run the bootstrap sampling significance test with the <code class="docutils literal notranslate"><span class="pre">test</span></code> function.
+It takes the following inputs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">targs</span></code>, type: <code class="docutils literal notranslate"><span class="pre">list</span></code> or <code class="docutils literal notranslate"><span class="pre">str</span></code>. They are the targets, or <em>gold standard</em>, that you use as benchmark to measure the <em>h0</em> and <em>h1</em> predictions’ performance. They can be a <strong>list of integers</strong>, representing the labels’ indexes for each data point, or a string. In such case, the string will be interpreted as the <strong>path</strong> to a text file containing a single integer in each row, having the same meaning as for the list input.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">h0_preds</span></code>, type: <code class="docutils literal notranslate"><span class="pre">list</span></code> or <code class="docutils literal notranslate"><span class="pre">str</span></code>. The <em>h0</em> predictions, in the same formats of <code class="docutils literal notranslate"><span class="pre">targs</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">h1_preds</span></code>, type: <code class="docutils literal notranslate"><span class="pre">list</span></code> or <code class="docutils literal notranslate"><span class="pre">str</span></code>. The <em>h1</em> predictions, in the same formats as above.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">h0_name</span></code>, type: <code class="docutils literal notranslate"><span class="pre">str</span></code>, default: <code class="docutils literal notranslate"><span class="pre">h0</span></code>. Expression to describe the <em>h0</em> condition.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">h1_name</span></code>, type: <code class="docutils literal notranslate"><span class="pre">str</span></code>, default: <code class="docutils literal notranslate"><span class="pre">h1</span></code>. Expression to describe the <em>h1</em> condition.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_loops</span></code>, type: <code class="docutils literal notranslate"><span class="pre">int</span></code>, default: <code class="docutils literal notranslate"><span class="pre">100</span></code>. Number of iterations for computing the bootstrap sampling.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sample_size</span></code>, type: <code class="docutils literal notranslate"><span class="pre">float</span></code>, default: <code class="docutils literal notranslate"><span class="pre">.1</span></code>. Percentage of data points sampled, with respect to their whole set. The admitted values range between 0.05 (5%) and 0.5 (50%).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">verbose</span></code>, type: <code class="docutils literal notranslate"><span class="pre">bool</span></code>, default: <code class="docutils literal notranslate"><span class="pre">False</span></code>. If true, the experiments’ performance is shown.</p></li>
+</ul>
+<p>For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">boot</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">targs</span><span class="o">=</span><span class="s1">&#39;../test_boot/h0.0/targs.txt&#39;</span><span class="p">,</span> <span class="n">h0_preds</span><span class="o">=</span><span class="s1">&#39;../test_boot/h0.0/preds.txt&#39;</span><span class="p">,</span> <span class="n">h1_preds</span><span class="o">=</span><span class="s1">&#39;../test_boot/h1.0/preds.txt&#39;</span><span class="p">,</span> <span class="n">n_loops</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=.</span><span class="mi">2</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The ouput will be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>total size............... 1000
+sample size.............. 200
+targs count:              [&#39;class 0 freq 465 perc 46.50%&#39;, &#39;class 1 freq 535 perc 53.50%&#39;]
+h0 preds count:           [&#39;class 0 freq 339 perc 33.90%&#39;, &#39;class 1 freq 661 perc 66.10%&#39;]
+h1 preds count:           [&#39;class 0 freq 500 perc 50.00%&#39;, &#39;class 1 freq 500 perc 50.00%&#39;]
+h0 F-measure............. 67.76   h1 F-measure............. 74.07   diff... 6.31
+h0 accuracy.............. 69.0    h1 accuracy.............. 74.1    diff... 5.1
+h0 precision............. 69.94   h1 precision............. 74.1    diff... 4.16
+h0 recall................ 67.96   h1 recall................ 74.22   diff... 6.26
+bootstrap: 100%|███████████████████████████| 1000/1000 [00:07&lt;00:00, 139.84it/s]
+count sample diff f1   is twice tot diff f1....... 37   / 1000    p &lt; 0.037  *
+count sample diff acc  is twice tot diff acc...... 73   / 1000    p &lt; 0.073
+count sample diff prec is twice tot diff prec..... 111  / 1000    p &lt; 0.111
+count sample diff rec  is twice tot diff rec ..... 27   / 1000    p &lt; 0.027  *
+Out[3]:
+       f1 diff_f1 sign_f1   acc diff_acc sign_acc   prec diff_prec sign_prec    rec diff_rec sign_rec
+h0  67.76                  69.0                    69.94                      67.96
+h1  74.07    6.31       *  74.1      5.1           74.10      4.16            74.22     6.26        *
+</pre></div>
+</div>
+<p>That’s it!
+Where you see two asterisks <strong>**</strong> you have a significance with <span class="math notranslate nohighlight">\(p \le .01\)</span>; one asterisk <strong>*</strong> indicates siginficance with <span class="math notranslate nohighlight">\(p \le .05\)</span>.</p>
+</div>
+<div class="section" id="boostsa-in-a-pipeline">
+<h2>boostsa in a pipeline<a class="headerlink" href="#boostsa-in-a-pipeline" title="Permalink to this headline">¶</a></h2>
+<p>Your use case is probably much more complex than that of the previous example.
+You probably run multiple experiments, where you want to compare several <em>h0</em> baselines with many <em>h&gt;0</em> (<em>h1</em>, <em>h2</em>…) experimental conditions.
+Also, for each baseline/experimental condition you are maybe running many experiments, let’s say to reduce the random initialization variability.</p>
+<p>You would like to store the experiments’ results directly when you run them, and to compute bootstrap sampling in the same pipeline.
+You can do so with the functions <code class="docutils literal notranslate"><span class="pre">feed</span></code> and <code class="docutils literal notranslate"><span class="pre">run</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">feed</span></code> function takes the following inputs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">h0</span></code>, type: <code class="docutils literal notranslate"><span class="pre">str</span></code>. This is an expression that gives a name to the <em>h0</em> experiment. It must be provided both for the <em>h0</em> experiments, and for the <em>h&gt;0</em> experiments which have to be compared with that <em>h0</em> condition.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">h1</span></code>, type: <code class="docutils literal notranslate"><span class="pre">str</span></code>, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>. This is an expression that gives a name to the <em>h&gt;0</em> experiment.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">exp_idx</span></code>, type: <code class="docutils literal notranslate"><span class="pre">str</span></code>, default: <code class="docutils literal notranslate"><span class="pre">None</span></code>. This is an expression that identifies the single experiment, in case multiple experiments are carried out within the same experimental condition. It could contain, for example, the directory containing the outputs of such experiments.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">targs</span></code>, type: <code class="docutils literal notranslate"><span class="pre">list</span></code> or <code class="docutils literal notranslate"><span class="pre">str</span></code>. Similarly to the <code class="docutils literal notranslate"><span class="pre">test</span></code> function, they are the targets and can be a <strong>list of integers</strong>, representing the labels’ indexes for each data point, or a string. In such case, the string will be interpreted as the <strong>path</strong> to a text file containing a single integer in each row.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">preds</span></code>, type: <code class="docutils literal notranslate"><span class="pre">list</span></code> or <code class="docutils literal notranslate"><span class="pre">str</span></code>. The predictions, in the same formats of <code class="docutils literal notranslate"><span class="pre">targs</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">idxs</span></code>, type: <code class="docutils literal notranslate"><span class="pre">list</span></code> or <code class="docutils literal notranslate"><span class="pre">str</span></code>. Similar to the other inputs, it can be a list or a string representing the path to a file containing an integer number in each row. During the training, you could have shuffled your data points. The data points order does not affect the bootstrap sampling, but you could want to store the shuffled indexes, to link your predictions to your original data points in a second moment. You can provide these indexes to this parameter.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">epochs</span></code>, type:<code class="docutils literal notranslate"><span class="pre">int</span></code>. This is an integer number, corresponding to the number of epochs of the experiment. This variable will be included in the bootstrap outputs. In case of multiple experiments for experimental condition, with early stopping at different epochs, the average will be reported.</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">run</span></code> function takes the three inputs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n_loops</span></code>, type: <code class="docutils literal notranslate"><span class="pre">int</span></code>, default: <code class="docutils literal notranslate"><span class="pre">100</span></code>. Number of iterations for computing the bootstrap sampling.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sample_size</span></code>, type: <code class="docutils literal notranslate"><span class="pre">float</span></code>, default: <code class="docutils literal notranslate"><span class="pre">.1</span></code>. Percentage of data points sampled, with respect to their whole set. The admitted values range between 0.05 (5%) and 0.5 (50%).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">verbose</span></code>, type: <code class="docutils literal notranslate"><span class="pre">bool</span></code>, default: <code class="docutils literal notranslate"><span class="pre">False</span></code>. If true, the experiments’ performance is shown.</p></li>
+</ul>
+<p>This is an example of these functions’ use:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># you load the package</span>
+
+<span class="kn">from</span> <span class="nn">boostsa</span> <span class="kn">import</span> <span class="n">Bootstrap</span>
+
+<span class="c1"># you create a bootstrap instance:</span>
+
+<span class="n">boot</span> <span class="o">=</span> <span class="n">Bootstrap</span><span class="p">()</span>
+
+<span class="c1"># You run your first experiment, to compute your baseline performance.</span>
+<span class="c1"># You have your targets list &#39;tatgets&#39;, and you obtain your predictions list &#39;h0_exp1_preidctions&#39;</span>
+<span class="c1"># You feed your bootstrap instance with your lists:</span>
+
+<span class="n">boot</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="n">h0</span><span class="o">=</span><span class="s1">&#39;h0&#39;</span><span class="p">,</span> <span class="n">exp_idx</span><span class="o">=</span><span class="s1">&#39;h0.1&#39;</span><span class="p">,</span> <span class="n">preds</span><span class="o">=</span><span class="n">h0_exp1_preidctions</span><span class="p">,</span> <span class="n">targs</span><span class="o">=</span><span class="n">tatgets</span><span class="p">)</span>
+
+<span class="c1"># You could have re-run the same experiment, with different weigths&#39; random initialization.</span>
+<span class="c1"># You keep on feeding your bootstrap instance with your outputs:</span>
+
+<span class="n">boot</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="n">h0</span><span class="o">=</span><span class="s1">&#39;h0&#39;</span><span class="p">,</span> <span class="n">exp_idx</span><span class="o">=</span><span class="s1">&#39;h0.2&#39;</span><span class="p">,</span> <span class="n">preds</span><span class="o">=</span><span class="n">h0_exp2_preidctions</span><span class="p">,</span> <span class="n">targs</span><span class="o">=</span><span class="n">targets</span><span class="p">)</span>
+
+<span class="c1"># Following the h0 experiments, you run the experiments that you want to compare with the first ones.</span>
+<span class="c1"># Note that, in these cases, you have to label both the experimental condition and the baseline you want to compare with.</span>
+
+<span class="n">boot</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="n">h0</span><span class="o">=</span><span class="s1">&#39;h0&#39;</span><span class="p">,</span> <span class="n">h1</span><span class="o">=</span><span class="s1">&#39;h1&#39;</span><span class="p">,</span> <span class="n">exp_idx</span><span class="o">=</span><span class="s1">&#39;h1.1&#39;</span><span class="p">,</span> <span class="n">preds</span><span class="o">=</span><span class="n">h1_exp1_preidctions</span><span class="p">,</span> <span class="n">targs</span><span class="o">=</span><span class="n">targets</span><span class="p">)</span>
+<span class="n">boot</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="n">h0</span><span class="o">=</span><span class="s1">&#39;h0&#39;</span><span class="p">,</span> <span class="n">h1</span><span class="o">=</span><span class="s1">&#39;h1&#39;</span><span class="p">,</span> <span class="n">exp_idx</span><span class="o">=</span><span class="s1">&#39;h1.2&#39;</span><span class="p">,</span> <span class="n">preds</span><span class="o">=</span><span class="n">h1_exp2_preidctions</span><span class="p">,</span> <span class="n">targs</span><span class="o">=</span><span class="n">targets</span><span class="p">)</span>
+
+<span class="c1"># When you ran all the experiments, you can compute the bootstrap sampling test:</span>
+
+<span class="n">boot</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">n_loops</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=.</span><span class="mi">2</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The output will look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>################################################################################
+start: 2021/02/09 16:21:26
+################################################################################
+h0.0                                                         acc 69.0    F 67.76
+h0.1                                                         acc 72.6    F 72.59
+################################################################################
+h0   vs   h1
+h1.0                                                         acc 74.1    F 74.07
+h1.1                                                         acc 73.0    F 72.99
+total size............... 2000
+sample size.............. 400
+targs count:              [&#39;class 0 freq 930 perc 46.50%&#39;, &#39;class 1 freq 1070 perc 53.50%&#39;]
+h0 preds count:           [&#39;class 0 freq 892 perc 44.60%&#39;, &#39;class 1 freq 1108 perc 55.40%&#39;]
+h1 preds count:           [&#39;class 0 freq 1051 perc 52.55%&#39;, &#39;class 1 freq 949 perc 47.45%&#39;]
+h0 F-measure............. 70.57   h1 F-measure............. 73.55   diff... 2.98
+h0 accuracy.............. 70.8    h1 accuracy.............. 73.55   diff... 2.75
+h0 precision............. 70.66   h1 precision............. 73.79   diff... 3.13
+h0 recall................ 70.52   h1 recall................ 73.85   diff... 3.33
+bootstrap: 100%|███████████████████████████| 1000/1000 [00:08&lt;00:00, 123.85it/s]
+count sample diff f1   is twice tot diff f1....... 61   / 1000    p &lt; 0.061
+count sample diff acc  is twice tot diff acc...... 67   / 1000    p &lt; 0.067
+count sample diff prec is twice tot diff prec..... 54   / 1000    p &lt; 0.054
+count sample diff rec  is twice tot diff rec ..... 44   / 1000    p &lt; 0.044  *
+   mean_epochs    acc diff_acc sign_acc   prec diff_prec sign_prec    rec diff_rec sign_rec     f1 diff_f1 sign_f1
+h0        None  70.80                    70.66                      70.52                    70.57
+h1        None  73.55     2.75           73.79      3.13            73.85     3.33        *  73.55    2.98
+################################################################################
+end: 2021/02/09 16:21:34  - time elapsed: 00:00:08
+################################################################################
+</pre></div>
+</div>
+<p>With <code class="docutils literal notranslate"><span class="pre">feed</span></code> and <code class="docutils literal notranslate"><span class="pre">run</span></code> you can store several <em>h0</em> condtions and to compare them with several <em>h&gt;0</em> condition.
+For each condition, you can run multiple experiments.</p>
+<p><strong>Note:</strong> the <em>h0</em> and <em>h&gt;0</em> that you compare, must have equal targets. Otherwise an error will be raised.</p>
+</div>
+<div class="section" id="resuming-outcomes">
+<h2>Resuming outcomes<a class="headerlink" href="#resuming-outcomes" title="Permalink to this headline">¶</a></h2>
+<p>Lastly, you could have run bootstrap sampling and stored the experiments’ outcomes in your <code class="docutils literal notranslate"><span class="pre">outcomes.json</span></code> file.
+After that, you want to add new experiment and to compare them with the previous ones.
+Or, simply, you want re-run bootstrap sampling with different parameters.
+You can load and keep on feeding the json file with the <code class="docutils literal notranslate"><span class="pre">loadjson</span></code> function, that takes as input the path to the <code class="docutils literal notranslate"><span class="pre">outcomes.json</span></code> file:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">next_boot</span> <span class="o">=</span> <span class="n">Bootstrap</span><span class="p">()</span>
+<span class="n">next_boot</span><span class="o">.</span><span class="n">loadjson</span><span class="p">(</span><span class="s1">&#39;outcomes.json&#39;</span><span class="p">)</span>
+<span class="n">next_boot</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="n">h0</span><span class="o">=</span><span class="s1">&#39;h0&#39;</span><span class="p">,</span> <span class="n">h1</span><span class="o">=</span><span class="s1">&#39;h2&#39;</span><span class="p">,</span> <span class="n">exp_idx</span><span class="o">=</span><span class="s1">&#39;h2.0&#39;</span><span class="p">,</span> <span class="n">preds</span><span class="o">=</span><span class="s1">&#39;test_boot/h2.0/preds.txt&#39;</span><span class="p">,</span> <span class="n">targs</span><span class="o">=</span><span class="s1">&#39;test_boot/h2.0/targs.txt&#39;</span><span class="p">,</span> <span class="n">idxs</span><span class="o">=</span><span class="s1">&#39;test_boot/h2.0/idxs.txt&#39;</span><span class="p">)</span>
+<span class="n">next_boot</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="n">h0</span><span class="o">=</span><span class="s1">&#39;h0&#39;</span><span class="p">,</span> <span class="n">h1</span><span class="o">=</span><span class="s1">&#39;h2&#39;</span><span class="p">,</span> <span class="n">exp_idx</span><span class="o">=</span><span class="s1">&#39;h2.1&#39;</span><span class="p">,</span> <span class="n">preds</span><span class="o">=</span><span class="s1">&#39;test_boot/h2.1/preds.txt&#39;</span><span class="p">,</span> <span class="n">targs</span><span class="o">=</span><span class="s1">&#39;test_boot/h2.1/targs.txt&#39;</span><span class="p">,</span> <span class="n">idxs</span><span class="o">=</span><span class="s1">&#39;test_boot/h2.1/idxs.txt&#39;</span><span class="p">)</span>
+<span class="n">next_boot</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">n_loops</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=.</span><span class="mi">2</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>That will produce:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>################################################################################
+start: 2021/02/09 16:21:34
+################################################################################
+h0.0                                                         acc 69.0    F 67.76
+h0.1                                                         acc 72.6    F 72.59
+################################################################################
+h0   vs   h1
+h1.0                                                         acc 74.1    F 74.07
+h1.1                                                         acc 73.0    F 72.99
+total size............... 2000
+sample size.............. 400
+targs count:              [&#39;class 0 freq 930 perc 46.50%&#39;, &#39;class 1 freq 1070 perc 53.50%&#39;]
+h0 preds count:           [&#39;class 0 freq 892 perc 44.60%&#39;, &#39;class 1 freq 1108 perc 55.40%&#39;]
+h1 preds count:           [&#39;class 0 freq 1051 perc 52.55%&#39;, &#39;class 1 freq 949 perc 47.45%&#39;]
+h0 F-measure............. 70.57   h1 F-measure............. 73.55   diff... 2.98
+h0 accuracy.............. 70.8    h1 accuracy.............. 73.55   diff... 2.75
+h0 precision............. 70.66   h1 precision............. 73.79   diff... 3.13
+h0 recall................ 70.52   h1 recall................ 73.85   diff... 3.33
+bootstrap: 100%|███████████████████████████| 1000/1000 [00:08&lt;00:00, 123.39it/s]
+count sample diff f1   is twice tot diff f1....... 73   / 1000    p &lt; 0.073
+count sample diff acc  is twice tot diff acc...... 80   / 1000    p &lt; 0.08
+count sample diff prec is twice tot diff prec..... 56   / 1000    p &lt; 0.056
+count sample diff rec  is twice tot diff rec ..... 47   / 1000    p &lt; 0.047  *
+################################################################################
+h0   vs   h2
+h2.0                                                         acc 71.7    F 71.32
+h2.1                                                         acc 71.4    F 71.2
+total size............... 2000
+sample size.............. 400
+targs count:              [&#39;class 0 freq 930 perc 46.50%&#39;, &#39;class 1 freq 1070 perc 53.50%&#39;]
+h0 preds count:           [&#39;class 0 freq 892 perc 44.60%&#39;, &#39;class 1 freq 1108 perc 55.40%&#39;]
+h2 preds count:           [&#39;class 0 freq 871 perc 43.55%&#39;, &#39;class 1 freq 1129 perc 56.45%&#39;]
+h0 F-measure............. 70.57   h2 F-measure............. 71.27   diff... 0.7
+h0 accuracy.............. 70.8    h2 accuracy.............. 71.55   diff... 0.75
+h0 precision............. 70.66   h2 precision............. 71.46   diff... 0.8
+h0 recall................ 70.52   h2 recall................ 71.2    diff... 0.68
+bootstrap: 100%|████████████████████████████| 1000/1000 [00:12&lt;00:00, 81.14it/s]
+count sample diff f1   is twice tot diff f1....... 367  / 1000    p &lt; 0.367
+count sample diff acc  is twice tot diff acc...... 326  / 1000    p &lt; 0.326
+count sample diff prec is twice tot diff prec..... 334  / 1000    p &lt; 0.334
+count sample diff rec  is twice tot diff rec ..... 369  / 1000    p &lt; 0.369
+   mean_epochs    acc diff_acc sign_acc   prec diff_prec sign_prec    rec diff_rec sign_rec     f1 diff_f1 sign_f1
+h0        None  70.80                    70.66                      70.52                    70.57
+h1        None  73.55     2.75           73.79      3.13            73.85     3.33        *  73.55    2.98
+h2        None  71.55     0.75           71.46       0.8            71.20     0.68           71.27     0.7
+################################################################################
+end: 2021/02/09 16:21:55  - time elapsed: 00:00:20
+################################################################################
+</pre></div>
+</div>
+</div>
+<div class="section" id="technical-and-ethic-considerations">
+<span id="tethics"></span><h2>Technical and ethic considerations<a class="headerlink" href="#technical-and-ethic-considerations" title="Permalink to this headline">¶</a></h2>
+<p>The significance test is a critical metric. It makes the difference between the experiments’ success or failure. Also, significance is <em>not</em> a gray-scaled measure: the <em>p</em>-value is significant or not.</p>
+<p>However, the parameters’ choice strongly affects the bootstrap sampling test’s outcome.</p>
+<p>Tuning the iterations’ number is easy: the more the better.
+For fast evaluatiions, the <code class="docutils literal notranslate"><span class="pre">boostsa</span></code> default iterations’ number is set to 100, but my advice is to rely only on results based on at least <strong>1000 iterations</strong>.</p>
+<p>The sample size, in terms of total amount of cases’ percentage, is a more opinable parameter.
+In literature, I only found the (not surprising) advice to not use a too small sample, because “<em>with small sample sizes, there is a risk that the calculated p-value will be artificially low—simply because the bootstrap samples are too similar</em>” (Søgaard et al., 2014).</p>
+<p>However, this is actually a case that occurs only with tiny samples.</p>
+<p>In fact, the opposite is also true: the <em>p</em>-value can be artificially low even for big samples, when their distribution becomes too similar to that of the whole data points.</p>
+<p>To limit these possible test’s misuses, <code class="docutils literal notranslate"><span class="pre">boostsa</span></code> only allows a <strong>sample size ranging from 0.05 (5%) to 0.5 (50%)</strong>.
+However, this could be not sufficient to prevent incorrect results.</p>
+<p>Therefore I invite you to:</p>
+<ul class="simple">
+<li><p>tune the parameters responsibly;</p></li>
+<li><p>always report both the <em>p</em>-values and the relative parameters.</p></li>
+</ul>
+<p>If you are aware of any better indication that can be given, please let me know!</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to boostsa’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Tommaso Fornaciari.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

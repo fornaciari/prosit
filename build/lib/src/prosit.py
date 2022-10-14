@@ -24,12 +24,12 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 ###############################################################################
 
 
-class PST:
-    def __init__(self, alpha=.001, max_topics=50, min_topics=4, nr_descriptors=10, closest_texts_rate=.1, verbose=False, device='cuda:0', dtype=torch.float32, dir_out=''):
+class ProSiT:
+    def __init__(self, alpha=.001, max_topics=50, min_topics=4, nr_descriptors=10, beta=.1, verbose=False, device='cuda:0', dtype=torch.float32, dir_out=''):
         self.alphas = alpha if type(alpha) is list else [alpha]
         self.max_topics = max_topics
         self.min_topics = min_topics
-        self.closest_texts_rates = closest_texts_rate if type(closest_texts_rate) is list else [closest_texts_rate]
+        self.betas = beta if type(beta) is list else [beta]
         self.nr_descriptors = nr_descriptors
         self.verbose = verbose
         self.device = device
@@ -124,7 +124,7 @@ class PST:
         # ax.set_xlim((min(Z_pos[:, 0]), max(Z_pos[:, 0])))
         # ax.set_ylim((min(Z_pos[:, 1]), max(Z_pos[:, 1])))
         # ax.set_zlim((min(Z_pos[:, 2]), max(Z_pos[:, 2])))
-        plt.tight_layout()
+        # plt.tight_layout()
         plt.savefig(pathout, dpi=300)
         # plt.show()
         plt.close()
@@ -147,6 +147,7 @@ class PST:
         if cv:
             try:
                 coherence_cv = CoherenceModel(texts=texts, dictionary=dictionary, topics=descriptors, coherence='c_v', processes=1)
+                # coherence_cv = CoherenceModel(texts=texts, dictionary=dictionary, topics=descriptors, coherence='u_mass', processes=1)
                 if self.verbose: print(f"cv:   {coherence_cv.get_coherence():.4f}")
                 metric2value['cv'] = round(coherence_cv.get_coherence(), 4)
             except Exception as err:
@@ -154,6 +155,7 @@ class PST:
         if npmi:
             try:
                 coherence_npmi = CoherenceModel(texts=texts, dictionary=dictionary, topics=descriptors, coherence='c_npmi', processes=1)
+                # coherence_npmi = CoherenceModel(texts=texts, dictionary=dictionary, topics=descriptors, coherence='c_uci', processes=1)
                 if self.verbose: print(f"npmi: {coherence_npmi.get_coherence():.4f}")
                 metric2value['npmi'] = round(coherence_npmi.get_coherence(), 4)
             except Exception as err:
@@ -420,57 +422,43 @@ class PST:
                     that is the "vec" for the "ivecs" in inputvec2iinputvecs, that is redefined by centroid2ivecs at each iteration.
                     """
                     doc4topic_cosim = self.cosine_similarity_matrix(instance_vectors, cluster_vectors.t())
+                    df_aff = pd.DataFrame(doc4topic_cosim.cpu().numpy())
                     topics = np.array([np.argmax(row) for row in doc4topic_cosim.cpu().numpy()])
-                    """
-                    Può capitare che dopo argmax nessun testo sia vicino a qualche topic
-                    devo rimuovere le colonne da cluster_vectors e modificare gli indici successivi a quelli venuti a mancare
-                    In pratica faccio questo:
-                    a = [1,1,3,3,5,5]
-                    sa = sorted(set(a))
-                    ra = list(range(6))
-                    {s:r for s,r in zip(sa, ra)}
-                    output: {1: 0, 3: 1, 5: 2}
-                    """
-                    cluster_vectors = cluster_vectors[[i for i in range(len(cluster_vectors)) if i in set(topics)], :]
-                    found2newidx = {found: newidx for found, newidx in zip(sorted(set(topics)), list(range(doc4topic_cosim.shape[1])))}
-                    topics = np.array([found2newidx[t] for t in topics])
                     """Counting the topics"""
                     top2freq = Counter(topics)
                     for c, n in top2freq.most_common(): print(f"{n:<5} instances in topic {c+1}")
                     print(f"{'final nr clusters':.<40} {len(cluster_vectors)}")
                     """Converting directly to np.array the texts, if they are a list of list of words; if they are a list of string, i do the same, converting the string to lists of words"""
                     instance_texts = np.array(instance_texts, dtype=object) if isinstance(instance_texts[0], list) else np.array([row.split() for row in instance_texts], dtype=object) if isinstance(instance_texts[0], str) else sys.exit('texts must be a list of string or a list of lists')
-                    for closest_texts_rate in self.closest_texts_rates:
-                        print(f"closest_texts_rate: {closest_texts_rate}")
+                    for beta in self.betas:
+                        print(f"beta (closest_texts_rate): {beta}")
                         """
                         Creating the list of indexes of the most representative texts for each topic
-                        ci sono testi che sono tra i più vicini di diversi cluster. con closest_texts_rate molto basso, può succedere che un topic rimanga senza doc per i descriptors
+                        ci sono testi che sono tra i più vicini di diversi cluster. con beta (closest_texts_rate) molto basso, può succedere che un topic rimanga senza doc per i descriptors
                         uso seen, in modo da non sovrascrivere il topic sugli indici già visti.
-                        se un indice è unseen, in dalla lista topics riceve comunque il topic a cui è più vicino
+                        se un indice è unseen, dalla lista topics riceve comunque il topic a cui è più vicino
                         """
                         i_representative_texts = list()
-                        df_aff = pd.DataFrame(doc4topic_cosim.cpu().numpy())
-                        seen = set() #
-                        for itop in range(doc4topic_cosim.shape[1]):
-                            first_docs = int(top2freq[itop] * closest_texts_rate)
-                            idocs = df_aff.sort_values(by=[itop], ascending=False).index[:first_docs].tolist()
-                            idocs_selected = set(idocs).difference(seen)
-                            # for idoc in idocs_selected:
-                            #     if topics[idoc] != itop:
-                            #         print(f"topic {itop}: doc index {idoc} delected for topic {topics[idoc]}")
-                            i_representative_texts.extend(idocs_selected)
-                            seen.update(idocs)
-                        
-                        missing_topics = set(topics).difference(set(topics[i_representative_texts]))
-                        if bool(missing_topics):
-                            print(f"*******\nTopic {missing_topics}: no docs left for descriptors\nDescriptors not computed!\nPlease set a greater closest_texts_rate.\n*******")
-                            continue
-                        
+                        # seen = set()
+                        for itop in sorted(top2freq.keys()):
+                            first_docs = int(top2freq[itop] * beta)
+                            """
+                            I doc che hanno i valori più alti per un topic, potrebbero avere valori ancora più alti per un altro topic.
+                            Quindi filtro le righe dove idxmax == itop, cioè prendo solo le righe dove il topic in argomento corrisponde all'indice del valore più alto della riga.
+                            Poi ovviamente li ordino in ordine decrescente e prendo i primi indici in base a first_docs, determinato da beta
+                            print('*****', itop, "*****")
+                            print(df_aff.sort_values(by=[itop], ascending=False))
+                            print(df_aff.loc[df_aff.idxmax(axis=1) == itop, :].sort_values(by=[itop], ascending=False))
+                            print(df_aff.loc[df_aff.idxmax(axis=1) == itop, :].sort_values(by=[itop], ascending=False).index[:first_docs].tolist())
+                            """
+                            idocs = df_aff.loc[df_aff.idxmax(axis=1) == itop, :].sort_values(by=[itop], ascending=False).index[:first_docs].tolist()
+                            i_representative_texts.extend(idocs)
+
                         descriptors, df_words = self.compute_ig(instance_texts[i_representative_texts], topics[i_representative_texts])
                         dictionary = Dictionary(instance_texts)
                         metric2value = self.evaluate(instance_texts, dictionary, descriptors, cv=cv, npmi=npmi, weco=weco, rbo=rbo, distinct=distinct)
                         output_vectors = cluster_vectors.cpu().numpy()
-                        models[alpha][len(cluster_vectors)][closest_texts_rate] = {'model': output_vectors,
+                        models[alpha][len(cluster_vectors)][beta] = {'model': output_vectors,
                                                                                    'doc4topicaffinity': doc4topic_cosim,
                                                                                    'doctopics': topics,
                                                                                    'descriptors': descriptors,

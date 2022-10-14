@@ -1,12 +1,11 @@
 Metadata-Version: 2.1
 Name: prosit
-Version: 0.1.1
+Version: 0.1.2
 Summary: A topic models algorithm
 Home-page: https://github.com/fornaciari/prosit
 Author: Tommaso Fornaciari
 Author-email: tommaso.fornaciari@poliziadistato.it
 License: MIT license
-Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3.7
 Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
 Requires-Python: >=3.6
@@ -164,6 +163,4 @@ The ouput will be:
 That's it!
 
 For more complex experimental designs and technical/ethical considerations, please refer to the documentation page.
-
-
 

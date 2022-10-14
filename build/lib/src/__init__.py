@@ -1,1 +1,1 @@
-from .prosit import PST
+from .prosit import ProSiT

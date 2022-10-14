@@ -35,7 +35,7 @@ class ProSiT:
         self.device = device
         self.dtype = dtype
         self.dirout = dir_out + '/' if (dir_out != '') and (not re.search('/$', dir_out)) else dir_out
-        if not os.path.exists(self.dirout): os.mkdir(self.dirout)
+        if not os.path.exists(self.dirout) and dir_out != '': os.mkdir(self.dirout)
 
     @staticmethod
     def list2file(lis, fileout, sepline="\n", wra='w'):

@@ -12,3 +12,4 @@ contextualized_topic_models
 matplotlib
 seaborn
 imageio
+pickle5

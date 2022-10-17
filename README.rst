@@ -2,7 +2,7 @@ prosit - ProSiT!
 ================
 
 .. image:: https://img.shields.io/pypi/v/prosit.svg
-        :target: https://pypi.python.org/pypi/boostsa
+        :target: https://pypi.python.org/pypi/prosit
 
 .. image:: https://img.shields.io/github/license/fornaciari/prosit
         :target: https://lbesson.mit-license.org/

@@ -40,6 +40,7 @@ PRoSiT is an iterative algorithm, that finds the latent dimensions in different 
 The :math:`\alpha` parameter is used in the following formula:
 
 .. math::
+
     CST = \frac{iter - \alpha}{iter}
 
 This produce this kind of curves,:

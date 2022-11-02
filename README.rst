@@ -34,14 +34,14 @@ ProSiT is deterministic and fully interpretable.
 It does not require any assumption regarding the possible number of topics in a corpus of documents:
 they are automatically identified given two tunable similarity parameters, :math:`\alpha` and `\beta`.
 
-The :math:`\alpha` parameter is used to determine the minimum Cosine Similarity Threshold - CST to consider different documents
+The :math:`\\alpha` parameter is used to determine the minimum Cosine Similarity Threshold - CST to consider different documents
 as related to the same latent dimension, i.e. topic.
 PRoSiT is an iterative algorithm, that finds the latent dimensions in different epochs, that need progressively higher similarity thresholds.
-The :math:`\alpha` parameter is used in the following formula:
+The :math:`\\alpha` parameter is used in the following formula:
 
 .. math::
 
-    CST = \frac{iter - \alpha}{iter}
+    CST = \\frac{iter - \\alpha}{iter}
 
 This produce this kind of curves,:
 

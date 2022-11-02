@@ -22,3 +22,37 @@ Guide
 Intro
 -----
 
+ProSiT - PROgressive SImilarity Thresholds is an algorithm for topic models.
+Given a corpus of texts, it will find latent dimensions corresponding
+to the main topics present in the corpus, providing for each of them the relative keywords (descriptors).
+
+It is input agnostic: it can deal with any kind of textual representations, be they vectors resulting from, for example,
+Bag of Words - BoW or State Of The Art - SOTA (multi-lingual) Language Models - LMs.
+
+ProSiT is deterministic and fully interpretable.
+
+It does not require any assumption regarding the possible number of topics in a corpus of documents:
+they are automatically identified given two tunable similarity parameters, :math:`\alpha` and `\beta`.
+
+The :math:`\alpha` parameter is used to determine the minimum Cosine Similarity Threshold - CST to consider different documents
+as related to the same latent dimension, i.e. topic.
+PRoSiT is an iterative algorithm, that finds the latent dimensions in different epochs, that need progressively higher similarity thresholds.
+The :math:`\alpha` parameter is used in the following formula:
+
+.. math::
+    CST = \frac{iter - \alpha}{iter}
+
+This produce this kind of curves,:
+
+.. image:: _static/alpha.png
+
+
+
+
+
+
+
+
+
+
+

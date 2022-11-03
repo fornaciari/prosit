@@ -36,8 +36,12 @@ they are automatically identified given two tunable similarity parameters, :math
 
 The :math:`\alpha` parameter is used to determine the minimum Cosine Similarity Threshold - CST to consider different documents
 as related to the same latent dimension, i.e. topic.
-PRoSiT is an iterative algorithm, that finds the latent dimensions in different epochs, that need progressively higher similarity thresholds.
-The :math:`\alpha` parameter is used in the following formula:
+PRoSiT is an iterative algorithm, that finds these latent dimensions in different epochs,
+where the overall number of data points is progressively reduced, as step by step each set of points lying within the given threshold is
+collapsed into its centroid.
+In this procedure, growing cosine similarity thresholds are needed to prevent all the data points
+from falling into their global centroid.
+Therefore, the :math:`\alpha` parameter is used in the following formula, that provides higher CSTs at every epoch:
 
 .. math::
 
@@ -46,8 +50,16 @@ The :math:`\alpha` parameter is used in the following formula:
 This produce this kind of curves,:
 
 .. image:: _static/alpha.png
-    :width: 500
+    :width: 600
     :alt: Some examples of the :math:`\alpha` curve.
+
+Epoch by epoch, reducing the number of data points into smaller sets of latent dimensions, ProSiT produces several hypotheses
+of groups of topics/latent dimensions.
+To extract from them their main keywords, for each latent dimension we need to determine which documents we want to consider.
+To this aim we use the parameter :math:`\beta`, which represent the percentage of the documents,
+the most close to the latent dimension, that will be considered.
+For example, :math:`\beta = .1` means that, considering the closest documents to the topic, the top 10% will be taken into consideration.
+In practice, :math:`\beta` affects the level of specificity that will be considered as satisfying, for each set of descriptors.
 
 
 

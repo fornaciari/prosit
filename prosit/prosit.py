@@ -3,7 +3,7 @@
 import sys, os, re, time, json
 import numpy as np
 import pandas as pd
-import pickle5 as pickle
+import pickle
 from collections import defaultdict, Counter
 from scipy.sparse import lil_matrix, save_npz
 import torch

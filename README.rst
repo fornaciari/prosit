@@ -19,31 +19,20 @@ prosit - ProSiT!
     :target: https://colab.research.google.com/drive/1eewGMqW_cIRqKdWW1tBCFE3T2qVCI_EV#scrollTo=6czDoYOiGpJx
     :alt: Open In Colab
 
-Intro
------
+Welcome
+-------
 
 ProSiT - PROgressive SImilarity Thresholds is an algorithm for topic models.
-Given a corpus of texts, it will find latent dimensions corresponding
-to the main topics present in the corpus, providing for each of them the relative keywords (descriptors).
 
-It is input agnostic: it can deal with any kind of textual representations, be they vectors resulting from, for example,
-Bag of Words - BoW or State Of The Art - SOTA (multi-lingual) Language Models - LMs.
+Documentation at :ref:`readthedocs<https://prosit.readthedocs.io/en/latest/?badge=latest>`.
 
-ProSiT is deterministic and fully interpretable.
+You can try ProSiT on this :ref:`colab notebook<https://colab.research.google.com/drive/1eewGMqW_cIRqKdWW1tBCFE3T2qVCI_EV#scrollTo=6czDoYOiGpJx>`.
 
-It does not require any assumption regarding the possible number of topics in a corpus of documents:
-they are automatically identified given two tunable similarity parameters, :math:`\alpha` and `\beta`.
 
-The :math:`\\alpha` parameter is used to determine the minimum Cosine Similarity Threshold - CST to consider different documents
-as related to the same latent dimension, i.e. topic.
-PRoSiT is an iterative algorithm, that finds the latent dimensions in different epochs, that need progressively higher similarity thresholds.
-The :math:`\\alpha` parameter is used in the following formula:
+For technical details and citation, please refer to:
 
-.. math::
+ `Fornaciari T., Hovy D., Bianchi F. (2022).
+ *ProSiT! Latent Variable Discovery with PROgressive SImilarity Thresholds*.
+ arXiv <https://arxiv.org/abs/2210.14763>`_
 
-    CST = \\frac{iter - \\alpha}{iter}
-
-This produce this kind of curves,:
-
-.. image:: docs/_static/alpha.png
 

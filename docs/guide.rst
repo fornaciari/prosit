@@ -32,7 +32,7 @@ Bag of Words - BoW or State Of The Art - SOTA (multi-lingual) Language Models - 
 ProSiT is deterministic and fully interpretable.
 
 It does not require any assumption regarding the possible number of topics in a corpus of documents:
-they are automatically identified given two tunable similarity parameters, :math:`\alpha` and `\beta`.
+they are automatically identified given two tunable similarity parameters, :math:`\alpha` and :math:`\beta`.
 
 The :math:`\alpha` parameter is used to determine the minimum Cosine Similarity Threshold - CST to consider different documents
 as related to the same latent dimension, i.e. topic.
@@ -46,7 +46,8 @@ The :math:`\alpha` parameter is used in the following formula:
 This produce this kind of curves,:
 
 .. image:: _static/alpha.png
-
+    :width: 500
+    :alt: Some examples of the :math:`\alpha` curve.
 
 
 

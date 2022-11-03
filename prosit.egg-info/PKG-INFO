@@ -39,10 +39,9 @@ Welcome
 
 ProSiT - PROgressive SImilarity Thresholds is an algorithm for topic models.
 
-Documentation at :ref:`readthedocs<https://prosit.readthedocs.io/en/latest/?badge=latest>`.
+Documentation at `readthedocs <https://prosit.readthedocs.io/en/latest/?badge=latest>`_.
 
-You can try ProSiT on this :ref:`colab notebook<https://colab.research.google.com/drive/1eewGMqW_cIRqKdWW1tBCFE3T2qVCI_EV#scrollTo=6czDoYOiGpJx>`.
-
+You can try ProSiT on this `colab notebook <https://colab.research.google.com/drive/1eewGMqW_cIRqKdWW1tBCFE3T2qVCI_EV#scrollTo=6czDoYOiGpJx>`_.
 
 For technical details and citation, please refer to:
 

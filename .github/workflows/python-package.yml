@@ -16,7 +16,7 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
-    - name: Set up GCC
+    - name: Set up GCC # serve a gensim, tra le dependencies
       uses: egor-tensin/setup-gcc@v1
       with:
         version: latest
@@ -24,7 +24,7 @@ jobs:
     - name: Install dependencies
       run: |
         pip install --upgrade pip
-        pip install setuptools wheel twine
+        pip install -U setuptools wheel twine
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
